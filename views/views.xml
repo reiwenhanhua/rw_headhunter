@@ -1,61 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="rw_headhunter.list">
-      <field name="name">rw_headhunter list</field>
-      <field name="model">rw_headhunter.rw_headhunter</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="rw_headhunter.action_window">
-      <field name="name">rw_headhunter window</field>
-      <field name="res_model">rw_headhunter.rw_headhunter</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="rw_headhunter.action_server">
-      <field name="name">rw_headhunter server</field>
-      <field name="model_id" ref="model_rw_headhunter_rw_headhunter"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="rw_headhunter" id="rw_headhunter.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="rw_headhunter.menu_1" parent="rw_headhunter.menu_root"/>
-    <menuitem name="Menu 2" id="rw_headhunter.menu_2" parent="rw_headhunter.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="rw_headhunter.menu_1_list" parent="rw_headhunter.menu_1"
-              action="rw_headhunter.action_window"/>
-    <menuitem name="Server to list" id="rw_headhunter" parent="rw_headhunter.menu_2"
-              action="rw_headhunter.action_server"/>
-    -->
 
       <!-- menu top -->
       <menuitem name="猎头工作台" id="menu_root" sequence="101"/>
