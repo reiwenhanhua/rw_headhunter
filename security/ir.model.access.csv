@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rw_headhunter_rw_headhunter,rw_headhunter.rw_headhunter,model_rw_headhunter_rw_headhunter,,1,0,0,0
