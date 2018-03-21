@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      
+      <!-- personnel START -->
+        <!-- form -->
+        <record id="view_personnel_form" model="ir.ui.view">
+            <field name="name">人才表单</field>
+            <field name="model">rw_headhunter.personnel</field>
+            <field name="arch" type="xml">
+                <form string="personnel">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar" options='{"preview_image":"image_medium"}'/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="人才姓名"/>
+                            </h1>
+                        </div>
+                                <group string="工作信息">
+                                    <group string="联系方式">
+                                        <field name="mobile_phone"/>
+                                        <field name="work_location"/>
+                                        <field name="work_email" widget="email"/>
+                                        <field name="work_phone"/>
+                                    </group>
+                                    <group string="工作概况">
+                                    </group>
+                                </group>
+                                <group string="个人信息">
+                                    <group string="生活 &amp; 其他信息">
+                                        <field name="country_id" options='{"no_open": True, "no_create": True}'/>
+                                    </group>
+                                    <group string="个人概况">
+                                        <field name="gender"/>
+                                        <field name="marital"/>
+                                    </group>
+                                    <group string="生日">
+                                        <field name="birthday"/>
+                                    </group>
+                                </group>
+                                <field name="notes" placeholder="简历信息..." colspan="4"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- search -->
+        <record id="view_personnel_search" model="ir.ui.view">
+          <field name="name">人才列表搜索</field>
+          <field name="model">rw_headhunter.personnel</field>
+          <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="work_phone"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </search>
+          </field>
+        </record>
+
+        <!-- tree -->
+        <record id="view_personnel_tree" model="ir.ui.view">
+            <field name="name">人才列表</field>
+            <field name="model">rw_headhunter.personnel</field>
+            <field name="arch" type="xml">
+                <tree string="personnels">
+                    <field name="name"/>
+                    <field name="work_phone"/>
+                    <field name="work_email"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- action -->
+        <record id="action_open_view_personnel_tree" model="ir.actions.act_window">
+            <field name="name">人才动作</field>
+            <field name="res_model">rw_headhunter.personnel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+      <!-- menu actions -->
+      <menuitem name="人才列表" id="menu_view_personnel_tree" parent="menu_122"
+                  action="action_open_view_personnel_tree"/>
+      <!-- personnel END -->
+
+  </data>
+</odoo>
