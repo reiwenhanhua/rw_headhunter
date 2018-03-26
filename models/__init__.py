@@ -2,3 +2,4 @@
 
 from . import models
 import personnel
+import trade

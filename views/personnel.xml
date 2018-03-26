@@ -25,6 +25,7 @@
                                         <field name="work_phone"/>
                                     </group>
                                     <group string="工作概况">
+                                        <field name="trade_id"/>
                                     </group>
                                 </group>
                                 <group string="个人信息">
@@ -58,6 +59,7 @@
                 <field name="name"/>
                 <field name="work_phone"/>
                 <field name="mobile_phone"/>
+                <field name="trade_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
             </search>
           </field>
@@ -73,6 +75,23 @@
                     <field name="work_phone"/>
                     <field name="mobile_phone"/>
                     <field name="work_email"/>
+                    <field name="trade_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- tree -->
+        <record id="view_personnel_tree" model="ir.ui.view">
+            <field name="name">人才列表</field>
+            <field name="model">rw_headhunter.personnel</field>
+            <field name="arch" type="xml">
+                <tree string="personnels">
+                    <field name="name"/>
+                    <field name="work_phone"/>
+                    <field name="mobile_phone"/>
+                    <field name="work_email"/>
+                    <field name="trade_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
@@ -90,6 +109,35 @@
       <menuitem name="人才列表" id="menu_view_personnel_tree" parent="menu_122"
                   action="action_open_view_personnel_tree"/>
       <!-- personnel END -->
+
+
+      <!-- PartI START - tree group by trade -->
+        <record id="view_personnel_search2" model="ir.ui.view">
+            <field name="name">人才列表2</field>
+            <field name="model">rw_headhunter.personnel</field>
+            <field name="arch" type="xml">
+                <search string="group by trade">
+                    <field name="name"/>
+                    <group string="Group By">
+                        <filter name="group_by_trade" string="Trade"
+                                context="{'group_by': 'trade_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_open_view_personnel_tree2" model="ir.actions.act_window">
+            <field name="name">人才动作2</field>
+            <field name="res_model">rw_headhunter.personnel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_personnel_search2"/>
+            <field name="context">{'search_default_group_by_trade':1}</field>
+        </record>
+
+      <menuitem name="人才列表2" id="menu_view_personnel_tree2" parent="menu_122"
+                  action="action_open_view_personnel_tree2"/>
+      <!-- PartII END - -->
 
   </data>
 </odoo>

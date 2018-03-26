@@ -43,6 +43,7 @@ class Personnel(models.Model):
     image_medium = fields.Binary("Medium-sized photo", attachment=True,
         help="Medium-sized photo")
 
+    trade_id = fields.Many2one('rw_headhunter.trade', string='所属行业')
 
     @api.model
     def create(self, vals):

@@ -5,7 +5,7 @@
       <!-- menu top -->
       <menuitem name="猎头工作台" id="menu_root" sequence="101"/>
       <!-- menu categories -->
-      <menuitem name="人才管理" id="menu_122" parent="menu_root" sequence="122"/>
+      <menuitem name="属性管理" id="menu_122" parent="menu_root" sequence="122"/>
 
   </data>
 </odoo>
