@@ -9,6 +9,11 @@
             <field name="model">rw_headhunter.job</field>
             <field name="arch" type="xml">
                 <form string="job">
+                    <header>
+                        <button name="set_recruit" string="Launch Recruitment" states="open" type="object" class="oe_highlight"/>
+                        <button name="set_open" string="Stop Recruitment" states="recruit" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="recruit,open"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
@@ -28,7 +33,6 @@
                                 <field name="hh_company"/>
                                 <field name="trade_id"/>
                                 <field name="requirements"/>
-                                <field name="state"/>
                                 <field name="color"/>
                             </group>
                         </group>

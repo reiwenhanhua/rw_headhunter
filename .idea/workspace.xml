@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7228d0d-c043-4aa1-906d-d944838e73f3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/models/company.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/models/job.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/static/src/img/company_image.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/company.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/job.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/__manifest__.py" afterPath="$PROJECT_DIR$/__manifest__.py" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" afterPath="$PROJECT_DIR$/models/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/models/job.py" afterPath="$PROJECT_DIR$/models/job.py" />
+      <change beforePath="$PROJECT_DIR$/views/job.xml" afterPath="$PROJECT_DIR$/views/job.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,8 +64,8 @@
       <file leaf-file-name="job.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/job.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="36" selection-end-column="127" />
+            <state relative-caret-position="1476">
+              <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,8 +74,8 @@
       <file leaf-file-name="job.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/job.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="84" column="98" lean-forward="false" selection-start-line="84" selection-start-column="98" selection-end-line="84" selection-end-column="98" />
+            <state relative-caret-position="378">
+              <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -617,6 +611,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/company.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/company.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -627,26 +629,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/company.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/job.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="36" selection-end-column="127" />
+        <state relative-caret-position="1476">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/job.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="84" column="98" lean-forward="false" selection-start-line="84" selection-start-column="98" selection-end-line="84" selection-end-column="98" />
+        <state relative-caret-position="378">
+          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
           <folding />
         </state>
       </provider>

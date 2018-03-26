@@ -65,6 +65,21 @@ class Job(models.Model):
             default['name'] = _("%s (copy)") % (self.name)
         return super(Job, self).copy(default=default)
 
+    @api.multi
+    def set_recruit(self):
+        for record in self:
+            # no_of_recruitment = 1 if record.no_of_recruitment == 0 else record.no_of_recruitment // , 'no_of_recruitment': no_of_recruitment
+            record.write({'state': 'recruit'})
+        return True
+
+    @api.multi
+    def set_open(self):
+        return self.write({
+            'state': 'open',
+            'no_of_recruitment': 0,
+            'no_of_hired_employee': 0
+        })
+
     # def _compute_document_ids(self):
     #     applicants = self.mapped('application_ids').filtered(lambda self: not self.emp_id)
     #     app_to_job = dict((applicant.id, applicant.job_id.id) for applicant in applicants)
