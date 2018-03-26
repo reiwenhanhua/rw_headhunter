@@ -3,3 +3,5 @@
 from . import models
 import personnel
 import trade
+import job
+import company

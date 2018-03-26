@@ -34,6 +34,8 @@
         'views/templates.xml',
         'views/personnel.xml',
         'views/trade.xml',
+        'views/job.xml',
+        'views/company.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
