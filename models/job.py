@@ -29,13 +29,6 @@ class Job(models.Model):
     ], string='Status', readonly=True, required=True, track_visibility='always', copy=False, default='recruit',
         help="Set whether the recruitment process is open or closed for this job position.")
 
-    # document_ids = fields.One2many('ir.attachment', compute='_compute_document_ids', string="Applications")
-    # documents_count = fields.Integer(compute='_compute_document_ids', string="Documents")
-
-    # alias_id = fields.Many2one(
-    #     'mail.alias', "Alias", ondelete="restrict", required=True,
-    #     help="Email alias for this job position. New emails will automatically create new applicants for this job position.")
-
     color = fields.Integer("Color Index")
 
     @api.multi
@@ -68,7 +61,6 @@ class Job(models.Model):
     @api.multi
     def set_recruit(self):
         for record in self:
-            # no_of_recruitment = 1 if record.no_of_recruitment == 0 else record.no_of_recruitment // , 'no_of_recruitment': no_of_recruitment
             record.write({'state': 'recruit'})
         return True
 
@@ -80,20 +72,3 @@ class Job(models.Model):
             'no_of_hired_employee': 0
         })
 
-    # def _compute_document_ids(self):
-    #     applicants = self.mapped('application_ids').filtered(lambda self: not self.emp_id)
-    #     app_to_job = dict((applicant.id, applicant.job_id.id) for applicant in applicants)
-    #     attachments = self.env['ir.attachment'].search([
-    #         '|',
-    #         '&', ('res_model', '=', 'hr.job'), ('res_id', 'in', self.ids),
-    #         '&', ('res_model', '=', 'hr.applicant'), ('res_id', 'in', applicants.ids)])
-    #     result = dict.fromkeys(self.ids, self.env['ir.attachment'])
-    #     for attachment in attachments:
-    #         if attachment.res_model == 'hr.applicant':
-    #             result[app_to_job[attachment.res_id]] |= attachment
-    #         else:
-    #             result[attachment.res_id] |= attachment
-    #
-    #     for job in self:
-    #         job.document_ids = result[job.id]
-    #         job.documents_count = len(job.document_ids)
