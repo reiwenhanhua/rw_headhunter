@@ -36,6 +36,7 @@
         'views/trade.xml',
         'views/job.xml',
         'views/company.xml',
+        'views/application.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
