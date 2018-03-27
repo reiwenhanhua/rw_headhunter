@@ -37,6 +37,7 @@
         'views/job.xml',
         'views/company.xml',
         'views/application.xml',
+        'views/appstage.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

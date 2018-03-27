@@ -6,3 +6,4 @@ import trade
 import job
 import company
 import application
+import appstage

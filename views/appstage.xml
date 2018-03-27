@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+        <!-- Stage START -->
+        <!-- Stage Tree View -->
+        <record model="ir.ui.view" id="appstage_tree">
+            <field name="name">流程节点列表</field>
+            <field name="model">rw_headhunter.appstage</field>
+            <field name="arch" type="xml">
+                <tree string="Stages">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="fold"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Stage Form View -->
+        <record model="ir.ui.view" id="appstage_form">
+            <field name="name">流程节点表单</field>
+            <field name="model">rw_headhunter.appstage</field>
+            <field name="arch" type="xml">
+                <form string="Stage">
+                    <group string="Stage Definition">
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence" groups="base.group_no_one"/>
+                            <field name="job_id"/>
+                        </group>
+                        <group>
+                             <field name="fold"/>
+                            <field name="template_id" domain= "[('model_id.model', '=', 'hr.applicant')]"/>
+                        </group>
+                    </group>
+                    <separator string="Requirements"/>
+                    <field name="requirements"/>
+                </form>
+            </field>
+        </record>
+        <!-- Stage Action -->
+        <record id="appstage_act" model="ir.actions.act_window">
+            <field name="name">流程节点动作</field>
+            <field name="res_model">rw_headhunter.appstage</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="appstage_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new stage in the recruitment process.
+              </p><p>
+                Don't forget to specify the department if your recruitment process
+                is different according to the job position.
+              </p>
+            </field>
+        </record>
+        <!-- Stage Menu -->
+        <menuitem id="menu_appstage" name="流程节点列表" parent="menu_122" action="appstage_act"/>
+      <!-- Stage END -->
+  </data>
+</odoo>
