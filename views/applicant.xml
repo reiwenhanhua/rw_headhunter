@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- application START -->
+
+        <!-- form -->
+        <record id="view_applicant_form" model="ir.ui.view">
+            <field name="name">应用表单</field>
+            <field name="model">rw_headhunter.applicant</field>
+            <field name="arch" type="xml">
+                <form string="applicant">
+                    <header>
+                        <field name="stage_id" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="人才姓名"/>
+                            </h1>
+                        </div>
+                        <field name="stage_id" placeholder="状态"/>
+                    <notebook>
+                        <page string="注释">
+                            <field name="notes" placeholder="其他信息..." colspan="4"/>
+                        </page>
+                    </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree -->
+        <record id="view_applicant_tree" model="ir.ui.view">
+            <field name="name">应用列表</field>
+            <field name="model">rw_headhunter.applicant</field>
+            <field name="arch" type="xml">
+                <tree string="applicants">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="kanban_all_qingjiadan" model="ir.ui.view">
+            <field name="model">rw_headhunter.applicant</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <a type="open">
+                                    <t>申请人：</t>
+                                    <field name="name"/>
+                                </a>
+                                <field name="priority" widget="priority"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- action -->
+        <record id="action_open_view_applicant_tree" model="ir.actions.act_window">
+            <field name="name">应用动作</field>
+            <field name="res_model">rw_headhunter.applicant</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+      <!-- menu actions -->
+      <menuitem name="应用列表" id="menu_view_applicant_tree" parent="menu_122"
+                  action="action_open_view_applicant_tree"/>
+
+      <!-- application END -->
+  </data>
+</odoo>
