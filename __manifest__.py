@@ -17,14 +17,12 @@
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'ReiWen',
-    'version': '0.4',
+    'version': '1.0',
 
     # any module necessary for this one to work correctly
     'depends': ['base',
                 'mail',
                 'test_impex',
-                'rw_b_repoweredby',
-                'rw_b_location',
                 ],
 
     # always loaded
@@ -32,12 +30,6 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/personnel.xml',
-        'views/trade.xml',
-        'views/job.xml',
-        'views/company.xml',
-        'views/application.xml',
-        'views/appstage.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

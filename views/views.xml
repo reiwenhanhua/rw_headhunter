@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-
-      <!-- menu top -->
-      <menuitem name="猎头工作台" id="menu_root" sequence="101"/>
-      <!-- menu categories -->
-      <menuitem name="属性管理" id="menu_122" parent="menu_root" sequence="122"/>
-
+    <data>
+        <!-- [START] -->
+        <!-- form -->
+        <!-- search -->
+        <!-- tree -->
+        <!-- kanban -->
+        <!-- menu -->
+        <!-- menu-top -->
+        <menuitem name="Headhunter" id="menu_root" sequence="101"/>
+        <!-- menu-categories -->
+        <menuitem name="Configure" id="menu_122" parent="menu_root" sequence="122"/>
+        <!-- [END] -->
   </data>
 </odoo>
