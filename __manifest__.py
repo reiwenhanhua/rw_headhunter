@@ -30,6 +30,10 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/baseattribute.xml',
+        'views/basemore.xml',
+        'views/match.xml',
+        'views/job.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

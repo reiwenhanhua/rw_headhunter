@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- [START] - simple ============================================================================ -->
+        <!-- form - simple -->
+        <record id="match_view_form1" model="ir.ui.view">
+            <field name="name">match_view_form1</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="arch" type="xml">
+                <form string="Fast Create">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- tree - simple -->
+        <record id="match_view_tree1" model="ir.ui.view">
+            <field name="name">match_view_tree1</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="arch" type="xml">
+                <tree string="Fast List">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        <!-- action - simple -->
+        <record id="match_action_view_form1" model="ir.actions.act_window">
+            <field name="name">match_action_view_form1</field>
+            <field name="res_model">rw_headhunter.match</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <!-- <field name="target">new</field> -->
+        </record>
+        <!-- [END] - simple ============================================================================== -->
+
+        <!-- [START] - job_match ============================================================================ -->
+        <!-- kanban - simple & job_match -->
+        <record id="match_view_kanban1" model="ir.ui.view">
+            <field name="name">match_view_kanban1</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban"  on_create="rw_headhunter.match_action_view_form1">><!-- create simple -->
+                    <field name="name"/>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary"><t t-esc="record.name.value"/></div>
+                                        <field name="name"/>
+                                    </div>
+                                    <div class="o_kanban_manage_button_section">
+                                        <a class="o_kanban_manage_toggle_button" href="#">More <i class="fa fa-caret-down"/></a>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content o_visible">
+                                    <div class="row">
+                                        <div class="col-xs-6 o_kanban_primary_left">
+                                            <field name="name"/>
+                                        </div>
+                                        <div class="col-xs-6 o_kanban_primary_right">
+                                            <a type="edit">Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_manage_pane o_invisible">
+                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                        <div class="col-xs-8">
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </div>
+                                        <div class="col-xs-4 text-right">
+                                            <a type="edit">Settings</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- action - job_match -->
+        <record id="job_match_action_view_tree" model="ir.actions.act_window">
+            <field name="name">job_match_action_view_tree</field>
+            <field name="res_model">rw_headhunter.match</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('job_id', '=', active_id)]</field>
+            <field name="context">{'default_job_id': active_id}</field>
+        </record>
+        <!-- [END] - job_match ============================================================================== -->
+
+        <!-- [START] - match ============================================================================ -->
+        <!-- form -->
+        <record id="match_view_form" model="ir.ui.view">
+            <field name="name">match_view_form_inherit</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="inherit_id" ref="rw_headhunter.baseattribute_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <separator/>
+                    <group string="Information">
+                        <field name="job_id"/>
+                        <field name="personnel_id"/>
+                        <field name="job_duty_id"/>
+                        <field name="trade_id"/>
+                    </group>
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+        <!-- tree -->
+        <record id="match_view_tree" model="ir.ui.view">
+            <field name="name">match_view_tree_inherit</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="arch" type="xml">
+                <tree string="match">
+                    <field name="name"/>
+                    <field name="job_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        <!-- action -->
+        <record id="match_action_view_tree" model="ir.actions.act_window">
+            <field name="name">match_action_view_tree</field>
+            <field name="res_model">rw_headhunter.match</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('match_view_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')})
+                          ]"/>
+        </record>
+        <!-- menu-categories-list -->
+        <menuitem id="menu_list_match" name="match list" parent="menu_122"
+                  action="match_action_view_tree"/>
+        <!-- [END] - match ============================================================================== -->
+  </data>
+</odoo>

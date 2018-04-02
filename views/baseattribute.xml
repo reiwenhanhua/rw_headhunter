@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- [START] - baseattribute ========================================================================== -->
+        <!-- form -->
+        <record id="baseattribute_view_form" model="ir.ui.view">
+            <field name="name">baseattribute_view_form</field>
+            <field name="model">rw_headhunter.baseattribute</field>
+            <field name="arch" type="xml">
+                <form string="baseattribute">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="Name"/></h1>
+                        </div>
+                        <notebook>
+                            <page string="Remark">
+                                <field name="notes" placeholder="Something else ..." colspan="4"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="baseattribute_view_search" model="ir.ui.view">
+            <field name="name">baseattribute_view_search</field>
+            <field name="model">rw_headhunter.baseattribute</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </search>
+            </field>
+        </record>
+        <!-- tree -->
+        <record id="baseattribute_view_tree" model="ir.ui.view">
+            <field name="name">baseattribute_view_tree</field>
+            <field name="model">rw_headhunter.baseattribute</field>
+            <field name="arch" type="xml">
+                <tree string="baseattributes">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        <!-- action -->
+        <record id="baseattribute_action_view_tree" model="ir.actions.act_window">
+            <field name="name">baseattribute_action_view_tree</field>
+            <field name="res_model">rw_headhunter.baseattribute</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="baseattribute_view_search"/>
+        </record>
+        <!-- menu-categories-list -->
+        <!-- <menuitem id="menu_list_baseattribute" name="baseattribute list" parent="menu_122" -->
+        <!--           action="baseattribute_action_view_tree"/> -->
+        <!-- [END] - baseattribute ============================================================================ -->
+
+        <!-- [START] - baseattributeimage ========================================================================== -->
+        <!-- form -->
+        <record id="baseattributeimage_view_form" model="ir.ui.view">
+            <field name="name">baseattributeimage_view_form</field>
+            <field name="model">rw_headhunter.baseattributeimage</field>
+            <field name="arch" type="xml">
+                <form string="baseattributeimage">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar" options='{"preview_image":"image_medium"}'/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="Name"/></h1>
+                        </div>
+                        <notebook>
+                            <page string="Remark">
+                                <field name="notes" placeholder="Something else ..." colspan="4"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="baseattributeimage_view_search" model="ir.ui.view">
+            <field name="name">baseattributeimage_view_search</field>
+            <field name="model">rw_headhunter.baseattributeimage</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </search>
+            </field>
+        </record>
+        <!-- tree -->
+        <record id="baseattributeimage_view_tree" model="ir.ui.view">
+            <field name="name">baseattributeimage_view_tree</field>
+            <field name="model">rw_headhunter.baseattributeimage</field>
+            <field name="arch" type="xml">
+                <tree string="baseattributeimages">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        <!-- action -->
+        <record id="baseattributeimage_action_view_tree" model="ir.actions.act_window">
+            <field name="name">baseattributeimage_action_view_tree</field>
+            <field name="res_model">rw_headhunter.baseattributeimage</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="baseattributeimage_view_search"/>
+        </record>
+        <!-- menu-categories-list -->
+        <!-- <menuitem id="menu_list_baseattributeimage" name="baseattributeimage list" parent="menu_122" -->
+        <!--           action="baseattributeimage_action_view_tree"/> -->
+        <!-- [END] - baseattributeimage ============================================================================ -->
+  </data>
+</odoo>
