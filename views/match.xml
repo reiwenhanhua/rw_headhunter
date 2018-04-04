@@ -88,17 +88,42 @@
             <field name="res_model">rw_headhunter.match</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="domain">[('job_id', '=', active_id)]</field>
-            <field name="context">{'default_job_id': active_id}</field>
+            <field name="context">{'search_default_job_id': [active_id], 'default_job_id': active_id}</field>
         </record>
         <!-- [END] - job_match ============================================================================== -->
 
         <!-- [START] - match ============================================================================ -->
+        <!-- Meeting Types (for interview meetings) -->
+        <record model="calendar.event.type" id="match_meet_interview">
+            <field name="name">X</field>
+        </record>
+        <!-- CRM Lead Calendar View -->
+        <record model="ir.ui.view" id="match_view_calendar">
+            <field name="name">Calendar</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Applicants" date_start="date_action">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
         <!-- form -->
         <record id="match_view_form" model="ir.ui.view">
             <field name="name">match_view_form_inherit</field>
             <field name="model">rw_headhunter.match</field>
             <field name="inherit_id" ref="rw_headhunter.baseattribute_view_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//sheet/div" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_makemeeting" class="oe_stat_button" icon="fa-calendar" type="object"
+                             help="Schedule interview with this applicant">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Meetings</span>
+                             </div>
+                        </button>
+                    </div>
+                </xpath>
                 <xpath expr="//notebook" position="before">
                     <separator/>
                     <group string="Information">
@@ -106,6 +131,7 @@
                         <field name="personnel_id"/>
                         <field name="job_duty_id"/>
                         <field name="trade_id"/>
+                        <field name="date_action"/>
                     </group>
                     <separator/>
                 </xpath>
@@ -130,7 +156,8 @@
             <field name="view_ids"
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('match_view_tree')}),
-                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')})
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')}),
+                          (0, 0, {'view_mode': 'calendar'})
                           ]"/>
         </record>
         <!-- menu-categories-list -->
