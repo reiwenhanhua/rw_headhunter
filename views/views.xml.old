@@ -8,9 +8,9 @@
         <!-- kanban -->
         <!-- menu -->
         <!-- menu-top -->
-        <menuitem name="Headhunter" id="menu_root" sequence="101"/>
+        <!-- <menuitem name="Headhunter" id="menu_root" sequence="101"/> -->
         <!-- menu-categories -->
-        <menuitem name="Configure" id="menu_122" parent="menu_root" sequence="122"/>
+        <!-- <menuitem name="Configure" id="menu_122" parent="menu_root" sequence="122"/> -->
         <!-- [END] -->
   </data>
 </odoo>

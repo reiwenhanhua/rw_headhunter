@@ -121,5 +121,12 @@
         <!-- <menuitem id="menu_list_baseattributeimage" name="baseattributeimage list" parent="menu_122" -->
         <!--           action="baseattributeimage_action_view_tree"/> -->
         <!-- [END] - baseattributeimage ============================================================================ -->
+
+        <!-- [START] - menu root setting ========================================================================== -->
+        <!-- menu-top -->
+        <menuitem name="Headhunter" id="menu_root" sequence="101"/>
+        <!-- menu-categories -->
+        <menuitem name="Configure" id="menu_122" parent="menu_root" sequence="122"/>
+        <!-- [END] - menu root setting ============================================================================ -->
   </data>
 </odoo>

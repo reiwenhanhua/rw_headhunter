@@ -22,8 +22,8 @@ class Personnel(models.Model):
 
 
 # ByLeon: Company - 公司 =====================================================================
-class Company(models.Model):
-    _name = 'rw_headhunter.company'
+class WorkCompany(models.Model):
+    _name = 'rw_headhunter.workcompany'
     _inherit = ['rw_headhunter.baseattributeimage']
 
     @api.model
@@ -39,7 +39,7 @@ class Company(models.Model):
     @api.model
     def create(self, vals):
         tools.image_resize_images(vals)
-        return super(Company, self).create(vals)
+        return super(WorkCompany, self).create(vals)
 
     address = fields.Char(string='Address')
     work_phone = fields.Char(string='Work Phone')
@@ -79,3 +79,15 @@ class SalaryExpectation(models.Model):
 class Trade(models.Model):
     _name = 'rw_headhunter.trade'
     _inherit = ['rw_headhunter.baseattribute']
+
+
+# ByLeon: Trade - 阶段类别 =====================================================================
+class Stage(models.Model):
+    _name = 'rw_headhunter.stage'
+    _inherit = ['rw_headhunter.baseattribute']
+    _order = 'sequence'
+
+    sequence = fields.Integer(
+        "Sequence", default=10,
+        help="Gives the sequence order when displaying a list of stages.")
+

@@ -3,8 +3,8 @@
     <data>
         <!-- [START] - personnel ============================================================================ -->
         <!-- form - simple -->
-        <record id="personnel_view_form1" model="ir.ui.view">
-            <field name="name">personnel_view_form1</field>
+        <record id="personnel_view_form_simple" model="ir.ui.view">
+            <field name="name">personnel_view_form_simple</field>
             <field name="model">rw_headhunter.personnel</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -64,9 +64,9 @@
 
         <!-- [START] - company ============================================================================ -->
         <!-- form - simple -->
-        <record id="company_view_form1" model="ir.ui.view">
-            <field name="name">company_view_form1</field>
-            <field name="model">rw_headhunter.company</field>
+        <record id="workcompany_view_form_simple" model="ir.ui.view">
+            <field name="name">workcompany_view_form_simple</field>
+            <field name="model">rw_headhunter.workcompany</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
                     <group>
@@ -76,9 +76,9 @@
             </field>
         </record>
         <!-- form -->
-        <record id="company_view_form" model="ir.ui.view">
-            <field name="name">company_view_form_inherit</field>
-            <field name="model">rw_headhunter.company</field>
+        <record id="workcompany_view_form" model="ir.ui.view">
+            <field name="name">workcompany_view_form_inherit</field>
+            <field name="model">rw_headhunter.workcompany</field>
             <field name="inherit_id" ref="rw_headhunter.baseattributeimage_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="before">
@@ -96,9 +96,9 @@
             </field>
         </record>
         <!-- tree -->
-        <record id="company_view_tree" model="ir.ui.view">
-            <field name="name">company_view_tree_inherit</field>
-            <field name="model">rw_headhunter.company</field>
+        <record id="workcompany_view_tree" model="ir.ui.view">
+            <field name="name">workcompany_view_tree_inherit</field>
+            <field name="model">rw_headhunter.workcompany</field>
             <field name="inherit_id" ref="rw_headhunter.baseattributeimage_view_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="after">
@@ -108,24 +108,24 @@
             </field>
         </record>
         <!-- actions -->
-        <record id="company_action_view_tree" model="ir.actions.act_window">
-            <field name="name">company_action_view_tree</field>
-            <field name="res_model">rw_headhunter.company</field>
+        <record id="workcompany_action_view_tree" model="ir.actions.act_window">
+            <field name="name">workcompany_action_view_tree</field>
+            <field name="res_model">rw_headhunter.workcompany</field>
             <field name="view_ids"
                    eval="[(5, 0, 0),
-                          (0, 0, {'view_mode': 'tree', 'view_id': ref('company_view_tree')}),
-                          (0, 0, {'view_mode': 'form', 'view_id': ref('company_view_form')})
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('workcompany_view_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('workcompany_view_form')})
                           ]"/>
         </record>
         <!-- menu-categories-list -->
-        <menuitem id="menu_list_company" name="company list" parent="menu_122"
-                  action="company_action_view_tree"/>
+        <menuitem id="menu_list_workcompany" name="workcompany list" parent="menu_122"
+                  action="workcompany_action_view_tree"/>
         <!-- [END] - company ============================================================================== -->
 
         <!-- [START] - prefecture ============================================================================ -->
         <!-- form - simple -->
-        <record id="prefecture_view_form1" model="ir.ui.view">
-            <field name="name">prefecture_view_form1</field>
+        <record id="prefecture_view_form_simple" model="ir.ui.view">
+            <field name="name">prefecture_view_form_simple</field>
             <field name="model">rw_headhunter.prefecture</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -170,8 +170,8 @@
 
         <!-- [START] - education ============================================================================ -->
         <!-- form - simple -->
-        <record id="education_view_form1" model="ir.ui.view">
-            <field name="name">education_view_form1</field>
+        <record id="education_view_form_simple" model="ir.ui.view">
+            <field name="name">education_view_form_simple</field>
             <field name="model">rw_headhunter.education</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -216,8 +216,8 @@
 
         <!-- [START] - jobduty ============================================================================ -->
         <!-- form - simple -->
-        <record id="jobduty_view_form1" model="ir.ui.view">
-            <field name="name">jobduty_view_form1</field>
+        <record id="jobduty_view_form_simple" model="ir.ui.view">
+            <field name="name">jobduty_view_form_simple</field>
             <field name="model">rw_headhunter.jobduty</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -262,8 +262,8 @@
 
         <!-- [START] - workinglife ============================================================================ -->
         <!-- form - simple -->
-        <record id="workinglife_view_form1" model="ir.ui.view">
-            <field name="name">workinglife_view_form1</field>
+        <record id="workinglife_view_form_simple" model="ir.ui.view">
+            <field name="name">workinglife_view_form_simple</field>
             <field name="model">rw_headhunter.workinglife</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -308,8 +308,8 @@
 
         <!-- [START] - salaryexpectation ============================================================================ -->
         <!-- form - simple -->
-        <record id="salaryexpectation_view_form1" model="ir.ui.view">
-            <field name="name">salaryexpectation_view_form1</field>
+        <record id="salaryexpectation_view_form_simple" model="ir.ui.view">
+            <field name="name">salaryexpectation_view_form_simple</field>
             <field name="model">rw_headhunter.salaryexpectation</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -354,8 +354,8 @@
 
         <!-- [START] - trade ============================================================================ -->
         <!-- form - simple -->
-        <record id="trade_view_form1" model="ir.ui.view">
-            <field name="name">trade_view_form1</field>
+        <record id="trade_view_form_simple" model="ir.ui.view">
+            <field name="name">trade_view_form_simple</field>
             <field name="model">rw_headhunter.trade</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -397,5 +397,57 @@
         <menuitem id="menu_list_trade" name="trade list" parent="menu_122"
                   action="trade_action_view_tree"/>
         <!-- [END] - trade ============================================================================== -->
+
+        <!-- [START] - stage ============================================================================ -->
+        <!-- form - simple -->
+        <record id="stage_view_form_simple" model="ir.ui.view">
+            <field name="name">stage_view_form_simple</field>
+            <field name="model">rw_headhunter.stage</field>
+            <field name="arch" type="xml">
+                <form string="Fast Create">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- form -->
+        <record id="stage_view_form" model="ir.ui.view">
+            <field name="name">stage_view_form_inherit</field>
+            <field name="model">rw_headhunter.stage</field>
+            <field name="inherit_id" ref="rw_headhunter.baseattribute_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <field name="sequence"/>
+                    <separator/>
+                </xpath>
+            </field>
+        </record>
+        <!-- tree -->
+        <record id="stage_view_tree" model="ir.ui.view">
+            <field name="name">stage_view_tree_inherit</field>
+            <field name="model">rw_headhunter.stage</field>
+            <field name="arch" type="xml">
+                <tree string="stage">
+                    <field name="name"/>
+                    <field name="sequence"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        <!-- action -->
+        <record id="stage_action_view_tree" model="ir.actions.act_window">
+            <field name="name">stage_action_view_tree</field>
+            <field name="res_model">rw_headhunter.stage</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('stage_view_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('stage_view_form')})
+                          ]"/>
+        </record>
+        <!-- menu-categories-list -->
+        <menuitem id="menu_list_stage" name="stage list" parent="menu_122"
+                  action="stage_action_view_tree"/>
+        <!-- [END] - stage ============================================================================== -->
   </data>
 </odoo>

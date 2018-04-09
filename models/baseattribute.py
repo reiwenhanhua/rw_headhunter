@@ -8,7 +8,7 @@ from odoo.modules.module import get_module_resource
 # ByLeon: BaseAttribute - 基础属性的基本数据模型 ====================================================================
 class BaseAttribute(models.Model):
     _name = 'rw_headhunter.baseattribute'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
     name = fields.Char(string='Name', required=True, index=True)

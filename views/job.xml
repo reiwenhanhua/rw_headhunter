@@ -3,8 +3,8 @@
     <data>
         <!-- [START] - simple ============================================================================ -->
         <!-- form - simple -->
-        <record id="job_view_form1" model="ir.ui.view">
-            <field name="name">job_view_form1</field>
+        <record id="job_view_form_simple" model="ir.ui.view">
+            <field name="name">job_view_form_simple</field>
             <field name="model">rw_headhunter.job</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -15,8 +15,8 @@
             </field>
         </record>
         <!-- action - simple -->
-        <record id="job_action_view_form1" model="ir.actions.act_window">
-            <field name="name">job_action_view_form1</field>
+        <record id="job_action_view_form_simple" model="ir.actions.act_window">
+            <field name="name">job_action_view_form_simple</field>
             <field name="res_model">rw_headhunter.job</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
@@ -38,6 +38,16 @@
                         <field name="state" widget="statusbar" statusbar_visible="recruit,open"/>
                     </header>
                 </xpath>
+                <xpath expr="//sheet/div" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(rw_headhunter.job_match_action_view_kanban)d" class="oe_stat_button" icon="fa-list-ol" type="action"
+                             help="Schedule interview with this applicant">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Matching</span>
+                             </div>
+                        </button>
+                    </div>
+                </xpath>
                 <xpath expr="//notebook" position="before">
                     <separator/>
                     <group string="Information">
@@ -45,6 +55,15 @@
                     <separator/>
                 </xpath>
             </field>
+        </record>
+        <!-- action -->
+        <record id="job_action_view_form" model="ir.actions.act_window">
+            <field name="name">job_action_view_form</field>
+            <field name="res_model">rw_headhunter.job</field>
+            <field name="view_ids"
+                   eval="[
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('job_view_form')})
+                          ]"/>
         </record>
         <!-- tree -->
         <record id="job_view_tree" model="ir.ui.view">
@@ -62,7 +81,7 @@
             <field name="name">job_view_kanban</field>
             <field name="model">rw_headhunter.job</field>
             <field name="arch" type="xml">
-                <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban" on_create="rw_headhunter.job_action_view_form1"><!-- create simple -->
+                <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban" on_create="rw_headhunter.job_action_view_form"><!-- create simple -->
                     <field name="name"/>
                     <field name="color"/>
                     <field name="state"/>
@@ -71,20 +90,26 @@
                             <div t-attf-class="#{kanban_color(record.color.raw_value)}">
                                 <div class="o_kanban_card_header">
                                     <div class="o_kanban_card_header_title">
-                                        <div class="o_primary"><t t-esc="record.name.value"/></div>
-                                        <div t-if="record.state.raw_value == 'recruit'" class="o_secondary o_job_alias">
-                                            <small> <i class="fa fa-envelope-o"></i> <field name="name"/> </small>
+                                        <div class="col-xs-9 o_primary">
+                                            <t t-esc="record.name.value"/>
                                         </div>
-                                    </div>
-                                    <div class="o_kanban_manage_button_section">
-                                        <a class="o_kanban_manage_toggle_button" href="#">More <i class="fa fa-caret-down"/></a>
+                                        <div class="col-xs-3 o_dropdown_kanban dropdown">
+                                            <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                                <span class="fa fa-bars fa-lg"/>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                                <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+                                                <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="container o_kanban_card_content o_visible">
                                     <t t-if="record.state.raw_value == 'recruit'">
                                         <div class="row">
                                             <div class="col-xs-6 o_kanban_primary_left">
-                                                <button class="btn btn-primary" name="%(rw_headhunter.job_match_action_view_tree)d" type="action">Application(s)</button>
+                                                <button class="btn btn-primary" name="%(rw_headhunter.job_match_action_view_kanban)d" type="action">Application(s)</button>
                                             </div>
                                             <div class="col-xs-6 o_kanban_primary_right">
                                                 <div class="row" name="recruitment">
@@ -103,16 +128,6 @@
                                         </div>
                                     </t>
                                 </div>
-                                <div class="container o_kanban_card_manage_pane o_invisible">
-                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
-                                        <div class="col-xs-8">
-                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
-                                        </div>
-                                        <div class="col-xs-4 text-right">
-                                            <a type="edit">Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </t>
                     </templates>
@@ -120,19 +135,34 @@
             </field>
         </record>
         <!-- action -->
-        <record id="job_action_view_tree" model="ir.actions.act_window">
-            <field name="name">job_action_view_tree</field>
+        <record id="job_action_view_kanban" model="ir.actions.act_window">
+            <field name="name">job_action_view_kanban</field>
             <field name="res_model">rw_headhunter.job</field>
-            <field name="domain">[('state', '=', 'recruit')]</field>
             <field name="view_ids"
-                   eval="[(0, 0, {'view_mode': 'kanban', 'view_id': ref('job_view_kanban')}),
+                   eval="[
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('job_view_kanban')}),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('job_view_tree')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('job_view_form')})
                           ]"/>
         </record>
         <!-- menu-categories-list -->
         <menuitem id="menu_list_job" name="job list" parent="menu_122"
-                  action="job_action_view_tree"/>
+                  action="job_action_view_kanban"/>
+        <!-- action -->
+        <record id="job_action_view_kanban_recruit" model="ir.actions.act_window">
+            <field name="name">job_action_view_kanban</field>
+            <field name="res_model">rw_headhunter.job</field>
+            <field name="domain">[('state', '=', 'recruit')]</field>
+            <field name="view_ids"
+                   eval="[
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('job_view_kanban')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('job_view_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('job_view_form')})
+                          ]"/>
+        </record>
+        <!-- menu-categories-list -->
+        <menuitem id="menu_list_job_recruit" name="job list recruit" parent="menu_122"
+                  action="job_action_view_kanban_recruit"/>
         <!-- [END] - job ============================================================================== -->
   </data>
 </odoo>

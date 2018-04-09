@@ -3,8 +3,8 @@
     <data>
         <!-- [START] - simple ============================================================================ -->
         <!-- form - simple -->
-        <record id="match_view_form1" model="ir.ui.view">
-            <field name="name">match_view_form1</field>
+        <record id="match_view_form_simple" model="ir.ui.view">
+            <field name="name">match_view_form_simple</field>
             <field name="model">rw_headhunter.match</field>
             <field name="arch" type="xml">
                 <form string="Fast Create">
@@ -14,9 +14,17 @@
                 </form>
             </field>
         </record>
+        <!-- action - simple -->
+        <record id="match_action_view_form_simple" model="ir.actions.act_window">
+            <field name="name">match_action_view_form_simple</field>
+            <field name="res_model">rw_headhunter.match</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <!-- <field name="target">new</field> -->
+        </record>
         <!-- tree - simple -->
-        <record id="match_view_tree1" model="ir.ui.view">
-            <field name="name">match_view_tree1</field>
+        <record id="match_view_tree_simple" model="ir.ui.view">
+            <field name="name">match_view_tree_simple</field>
             <field name="model">rw_headhunter.match</field>
             <field name="arch" type="xml">
                 <tree string="Fast List">
@@ -25,85 +33,16 @@
                 </tree>
             </field>
         </record>
-        <!-- action - simple -->
-        <record id="match_action_view_form1" model="ir.actions.act_window">
-            <field name="name">match_action_view_form1</field>
-            <field name="res_model">rw_headhunter.match</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <!-- <field name="target">new</field> -->
-        </record>
         <!-- [END] - simple ============================================================================== -->
 
-        <!-- [START] - job_match ============================================================================ -->
-        <!-- kanban - simple & job_match -->
-        <record id="match_view_kanban1" model="ir.ui.view">
-            <field name="name">match_view_kanban1</field>
-            <field name="model">rw_headhunter.match</field>
-            <field name="arch" type="xml">
-                <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban"  on_create="rw_headhunter.match_action_view_form1">><!-- create simple -->
-                    <field name="name"/>
-                    <field name="color"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div t-attf-class="#{kanban_color(record.color.raw_value)}">
-                                <div class="o_kanban_card_header">
-                                    <div class="o_kanban_card_header_title">
-                                        <div class="o_primary"><t t-esc="record.name.value"/></div>
-                                        <field name="name"/>
-                                    </div>
-                                    <div class="o_kanban_manage_button_section">
-                                        <a class="o_kanban_manage_toggle_button" href="#">More <i class="fa fa-caret-down"/></a>
-                                    </div>
-                                </div>
-                                <div class="container o_kanban_card_content o_visible">
-                                    <div class="row">
-                                        <div class="col-xs-6 o_kanban_primary_left">
-                                            <field name="name"/>
-                                        </div>
-                                        <div class="col-xs-6 o_kanban_primary_right">
-                                            <a type="edit">Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container o_kanban_card_manage_pane o_invisible">
-                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
-                                        <div class="col-xs-8">
-                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
-                                        </div>
-                                        <div class="col-xs-4 text-right">
-                                            <a type="edit">Settings</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
-        <!-- action - job_match -->
-        <record id="job_match_action_view_tree" model="ir.actions.act_window">
-            <field name="name">job_match_action_view_tree</field>
-            <field name="res_model">rw_headhunter.match</field>
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="domain">[('job_id', '=', active_id)]</field>
-            <field name="context">{'search_default_job_id': [active_id], 'default_job_id': active_id}</field>
-        </record>
-        <!-- [END] - job_match ============================================================================== -->
-
         <!-- [START] - match ============================================================================ -->
-        <!-- Meeting Types (for interview meetings) -->
-        <record model="calendar.event.type" id="match_meet_interview">
-            <field name="name">X</field>
-        </record>
         <!-- CRM Lead Calendar View -->
-        <record model="ir.ui.view" id="match_view_calendar">
-            <field name="name">Calendar</field>
+        <record id="match_view_calendar" model="ir.ui.view">
+            <field name="name">match_view_calendar</field>
             <field name="model">rw_headhunter.match</field>
             <field name="priority" eval="2"/>
             <field name="arch" type="xml">
-                <calendar string="Applicants" date_start="date_action">
+                <calendar string="Applicants" date_start="date_action" all_day="allday"  mode="week" color="user_id">
                     <field name="name"/>
                 </calendar>
             </field>
@@ -114,15 +53,10 @@
             <field name="model">rw_headhunter.match</field>
             <field name="inherit_id" ref="rw_headhunter.baseattribute_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//sheet/div" position="before">
-                    <div class="oe_button_box" name="button_box">
-                        <button name="action_makemeeting" class="oe_stat_button" icon="fa-calendar" type="object"
-                             help="Schedule interview with this applicant">
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_text">Meetings</span>
-                             </div>
-                        </button>
-                    </div>
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <field name="stage_id" widget="statusbar" clickable="True"/>
+                    </header>
                 </xpath>
                 <xpath expr="//notebook" position="before">
                     <separator/>
@@ -131,11 +65,21 @@
                         <field name="personnel_id"/>
                         <field name="job_duty_id"/>
                         <field name="trade_id"/>
+                        <field name="priority" widget="priority"/>
                         <field name="date_action"/>
                     </group>
                     <separator/>
                 </xpath>
             </field>
+        </record>
+        <!-- action -->
+        <record id="match_action_view_form" model="ir.actions.act_window">
+            <field name="name">match_action_view_form</field>
+            <field name="res_model">rw_headhunter.match</field>
+            <field name="view_ids"
+                   eval="[
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')})
+                          ]"/>
         </record>
         <!-- tree -->
         <record id="match_view_tree" model="ir.ui.view">
@@ -150,19 +94,85 @@
             </field>
         </record>
         <!-- action -->
-        <record id="match_action_view_tree" model="ir.actions.act_window">
-            <field name="name">match_action_view_tree</field>
+        <record id="match_action_view_kanban" model="ir.actions.act_window">
+            <field name="name">match_action_view_kanban</field>
             <field name="res_model">rw_headhunter.match</field>
             <field name="view_ids"
-                   eval="[(5, 0, 0),
+                   eval="[
+                          (0, 0, {'view_mode': 'calendar'}),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('match_view_tree')}),
-                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')}),
-                          (0, 0, {'view_mode': 'calendar'})
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')})
                           ]"/>
         </record>
         <!-- menu-categories-list -->
         <menuitem id="menu_list_match" name="match list" parent="menu_122"
-                  action="match_action_view_tree"/>
+                  action="match_action_view_kanban"/>
         <!-- [END] - match ============================================================================== -->
+
+        <!-- [START] - job_match ============================================================================ -->
+        <!-- kanban -->
+        <record id="job_match_view_kanban" model="ir.ui.view">
+            <field name="name">job_match_view_kanban</field>
+            <field name="model">rw_headhunter.match</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" class="o_kanban_applicant" on_create="rw_headhunter.match_action_view_form">><!-- create simple -->
+                    <field name="stage_id"/>
+                    <field name="name"/>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-tooltip">
+                            <ul class="oe_kanban_tooltip">
+                                <li t-if="record.date_action.raw_value"><b>Action:</b> <field name="date_action"/></li>
+                            </ul>
+                        </t>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click oe_applicant_kanban oe_semantic_html_override">
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content" tooltip="kanban-tooltip">
+                                    <t t-if="record.name.raw_value"><b><field name="name"/></b><br/></t>
+                                    <i><field name="name"/></i><br/>
+                                    <field name="job_id"/><br/>
+                                    <div class="oe_kanban_bottom_right">
+                                        <!--<img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)" t-att-title="record.user_id.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>-->
+                                        <div class="pull-left" groups="base.group_user">
+                                            <field name="priority" widget="priority"/>
+                                        </div>
+                                    </div>
+                                    <div class="oe_kanban_bottom_left oe_margin_top_4">
+                                        <t t-if="record.date_action.raw_value">Action: <field name="date_action"/><br/></t>
+                                    </div>
+                                    <div class="oe_kanban_footer_left oe_margin_top_4">
+                                    </div>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- action - job_match -->
+        <record id="job_match_action_view_kanban" model="ir.actions.act_window">
+            <field name="name">job_match_action_view_kanban</field>
+            <field name="res_model">rw_headhunter.match</field>
+            <field name="domain">[('job_id', '=', active_id)]</field>
+            <field name="context">{'search_default_job_id': [active_id], 'default_job_id': active_id}</field>
+            <field name="view_ids"
+                   eval="[
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('job_match_view_kanban')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('match_view_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('match_view_form')})
+                          ]"/>
+        </record>
+        <!-- [END] - job_match ============================================================================== -->
   </data>
 </odoo>
