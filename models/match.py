@@ -31,10 +31,10 @@ class Match(models.Model):
     # kanban group by stage_id
     def _default_stage_id(self):
         if self._context.get('default_job_id'):
-            ids = self.env['hr.recruitment.stage'].search([
-                '|',
-                ('job_id', '=', False),
-                ('job_id', '=', self._context['default_job_id']),
+            ids = self.env['rw_headhunter.stage'].search([
+                # '|',
+                # ('job_id', '=', False),
+                # ('job_id', '=', self._context['default_job_id']),
             ], order='sequence asc', limit=1).ids
             if ids:
                 return ids[0]

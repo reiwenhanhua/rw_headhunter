@@ -42,7 +42,7 @@
             <field name="model">rw_headhunter.match</field>
             <field name="priority" eval="2"/>
             <field name="arch" type="xml">
-                <calendar string="Applicants" date_start="date_action" all_day="allday"  mode="week" color="user_id">
+                <calendar string="Applicants" date_start="date_action" all_day="allday"  mode="week" color="trade_id">
                     <field name="name"/>
                 </calendar>
             </field>
