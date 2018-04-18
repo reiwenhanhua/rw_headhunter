@@ -114,7 +114,7 @@
                                             <div class="col-xs-6 o_kanban_primary_right">
                                                 <div class="row" name="recruitment">
                                                     <div class="col-xs-12">
-                                                        <a t-if="record.state.raw_value == 'recruit'" name="set_open" type="object">Recruitment Done</a>
+                                                        <a t-if="record.state.raw_value == 'recruit'" name="set_open" type="object" style="line-height:80%">Recruitment Done</a>
                                                     </div>
                                                 </div>
                                             </div>
